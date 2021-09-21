@@ -36,6 +36,7 @@
             <option value="email">email</option>
           </select>
       </div>
+      
       <button class="btn btn-primary" onclick="displayNames()">Names</button>
       <button class="btn btn-primary" onclick="displayAddress()">Address</button>
       <button class="btn btn-primary" onclick="displayInAscending()">Sort Names</button>
@@ -72,17 +73,31 @@
 
   displayData = (data) => {
     infoContainer.innerHTML = "";
-
+    
     data.forEach((data) => {
+      let userAddress= getAddress(data)
       infoContainer.innerHTML += `
         <div class="card-body mx-2 my-2" style="border: 2px solid black;">
             <h5 class="card-title">Full name: ${data.name}</h5>
             <p class="card-text">Username: ${data.username}</p>
             <p class="card-text">Email: ${data.email}</p>
+            <p class="card-text">Address: ${userAddress}</p>
+            <a class="btn btn-primary" href="details.html">Get Details</a>
         </div>`;
     })
+    
   }
+  const getAddress = (userObj) => {
+  const address = [];
+  address.push(
+    userObj.address.street,
+    userObj.address.suite,
+    userObj.address.city,
+    userObj.address.zipcode
+  );
 
+  return address.join(" ");
+};
   async function getData() {
     let responsePromise = await fetch("https://jsonplaceholder.typicode.com/users");
 
@@ -91,6 +106,7 @@
     console.log(data);
 
     displayData(data);
+
   }
 
  
