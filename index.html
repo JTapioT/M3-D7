@@ -96,7 +96,12 @@
     let names = data.map((person) => person.name);
     console.log(names);
 
-    // infoContainer.innerHTML = ;
+    names.forEach((Element)=>{ 
+      infoContainer.innerHTML +=`
+          <ul class="list-group mx-1 my-1">
+              <li class="list-group-item">${Element}</li>
+          </ul>` ;})
+   
   }
 
   window.onload = () => {
