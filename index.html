@@ -37,7 +37,8 @@
           </select>
       </div>
       <button class="btn btn-primary" onclick="displayNames()">Names</button>
-
+      <button class="btn btn-primary" onclick="displayAddress()">Address</button>
+      <button class="btn btn-primary" onclick="displayInAscending()">Sort Names</button>
     </div>
     <div class="col-2"></div>
     </div>
@@ -55,7 +56,8 @@
 <script>
 
   let data;
-
+  
+  
   let infoContainer = document.getElementById("infoContainer");
 
   function getValues(value) {
@@ -91,11 +93,13 @@
     displayData(data);
   }
 
+ 
   displayNames = () => {
     infoContainer.innerHTML = "";
     let names = data.map((person) => person.name);
     console.log(names);
-
+   //let sortedName=
+      names.sort()
     names.forEach((Element)=>{ 
       infoContainer.innerHTML +=`
           <ul class="list-group mx-1 my-1">
@@ -103,7 +107,20 @@
           </ul>` ;})
    
   }
+  displayAddress = () => {
+    infoContainer.innerHTML = "";
+    //let add= object.keys(person.address)
+    let add = data.map((Element)=>{
+       return Object.value(Element.address)
+    })
 
+    console.log(add)
+
+          
+   
+  }
+
+  
   window.onload = () => {
     getData()
   }
